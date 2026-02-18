@@ -44,6 +44,7 @@ Automated Circuit Breakers: In the event of a detected anomaly, the Sentinel can
 
 Swarn is architected for speed and safety, built as a custom Layer-1 Blockchain using the Rust Substrate framework. This is tightly coupled with a Python-based AI Sidecar via a secure local RPC channel, allowing for "Cognitive Validation" of every block.
 
+```mermaid
 graph TD
     subgraph "Layer 4: Gateway (Interface)"
         API[RPC / API Endpoints]
@@ -72,7 +73,7 @@ graph TD
     Watcher --> Brain
     Brain --> Judge
     Judge -- "Circuit Breaker Signals" --> Basket
-
+```
 
 ## 🪙 Tokenomics: Cognitive Proof-of-Stake
 
