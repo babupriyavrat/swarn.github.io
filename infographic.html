@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Swarn | Sovereign-Hybrid Financial Protocol</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        swarn: {
+                            dark: '#0f172a',
+                            card: '#1e293b',
+                            accent: '#38bdf8', // Light Blue (Quantum)
+                            gold: '#fbbf24',   // Gold (Commodities)
+                            ai: '#a78bfa',     // Purple (Sentinel)
+                            danger: '#f43f5e',
+                            success: '#34d399'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 400px;
+            max-height: 500px;
+        }
+        /* Hide scrollbar for clean look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .step-connector::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            width: 2px;
+            height: 2rem;
+            background-color: #475569;
+            transform: translateX(-50%);
+            z-index: 0;
+        }
+        @media (min-width: 768px) {
+            .step-connector::after {
+                top: 50%;
+                left: 100%;
+                width: 2rem;
+                height: 2px;
+                transform: translateY(-50%);
+            }
+        }
+        .last-step::after {
+            display: none;
+        }
+        .glossary-card {
+            transition: transform 0.2s;
+        }
+        .glossary-card:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation / Header -->
+    <nav class="sticky top-0 z-50 glass-panel border-b border-slate-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded bg-gradient-to-br from-swarn-accent to-swarn-ai flex items-center justify-center font-bold text-white">S</div>
+                    <span class="font-display font-bold text-xl tracking-tight text-white">Project Swarn</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#necessity" class="hover:text-swarn-accent px-3 py-2 rounded-md text-sm font-medium transition-colors">Necessity</a>
+                        <a href="#basket" class="hover:text-swarn-gold px-3 py-2 rounded-md text-sm font-medium transition-colors">GSI Basket</a>
+                        <a href="#sentinel" class="hover:text-swarn-ai px-3 py-2 rounded-md text-sm font-medium transition-colors">Sentinel AI</a>
+                        <a href="#tokenomics" class="hover:text-swarn-success px-3 py-2 rounded-md text-sm font-medium transition-colors">Tokenomics</a>
+                        <a href="#glossary" class="hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors border border-slate-600">Glossary</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative overflow-hidden py-20 lg:py-32">
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <div class="inline-flex items-center rounded-full border border-swarn-accent/30 bg-swarn-accent/10 px-3 py-1 text-sm font-medium text-swarn-accent mb-6">
+                <span>Post-Quantum Secure • Sovereign-Neutral • Economic Defense</span>
+            </div>
+            <h1 class="font-display text-5xl md:text-7xl font-bold tracking-tight mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-200 to-slate-400">
+                The Bridge to Hardened Finance
+            </h1>
+            <p class="mt-4 max-w-2xl mx-auto text-xl text-slate-400">
+                A sovereign-hybrid protocol stabilizing volatile fiat with real-world commodities, guarded by the Swarn Sentinel "Iron Dome" against speculative attacks.
+            </p>
+        </div>
+    </header>
+
+    <!-- 1. The Strategic Necessity -->
+    <section id="necessity" class="py-20 bg-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-12 text-center md:text-left">
+                <h2 class="font-display text-3xl font-bold text-white mb-4">The Quadruple Convergence</h2>
+                <p class="text-slate-400 max-w-3xl">
+                    The global financial architecture faces four converging threats. Swarn provides the rail; Exchanges provide the compliance.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Card 1 -->
+                <div class="bg-swarn-card p-6 rounded-xl border border-slate-700 hover:border-swarn-accent transition-colors shadow-lg">
+                    <div class="text-swarn-accent text-4xl mb-4">⚛️</div>
+                    <h3 class="font-bold text-lg text-white mb-2">Quantum Threat</h3>
+                    <p class="text-sm text-slate-400">"Harvest Now, Decrypt Later" endangers all financial data. <br><strong class="text-white mt-2 block">Solution: NIST PQC Native</strong></p>
+                </div>
+                <!-- Card 2 -->
+                <div class="bg-swarn-card p-6 rounded-xl border border-slate-700 hover:border-swarn-danger transition-colors shadow-lg">
+                    <div class="text-swarn-danger text-4xl mb-4">💸</div>
+                    <h3 class="font-bold text-lg text-white mb-2">Fiat Fragility</h3>
+                    <p class="text-sm text-slate-400">Inflation and weaponization create systemic trade risks. <br><strong class="text-white mt-2 block">Solution: Sovereign Neutrality</strong></p>
+                </div>
+                <!-- Card 3 -->
+                <div class="bg-swarn-card p-6 rounded-xl border border-slate-700 hover:border-swarn-gold transition-colors shadow-lg">
+                    <div class="text-swarn-gold text-4xl mb-4">⛏️</div>
+                    <h3 class="font-bold text-lg text-white mb-2">Commodity Limits</h3>
+                    <p class="text-sm text-slate-400">Gold is a great store of value but a poor medium of exchange. <br><strong class="text-white mt-2 block">Solution: Hybrid GSI Basket</strong></p>
+                </div>
+                <!-- Card 4 -->
+                <div class="bg-swarn-card p-6 rounded-xl border border-slate-700 hover:border-swarn-ai transition-colors shadow-lg">
+                    <div class="text-swarn-ai text-4xl mb-4">📉</div>
+                    <h3 class="font-bold text-lg text-white mb-2">Economic Attack</h3>
+                    <p class="text-sm text-slate-400">Speculative "Soros attacks" can break stablecoin pegs. <br><strong class="text-white mt-2 block">Solution: AI "Iron Dome"</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. The GSI Basket -->
+    <section id="basket" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="font-display text-3xl font-bold text-white mb-4">The Global Stability Index (GSI)</h2>
+                    <p class="text-slate-400 mb-6">
+                        Swarn creates a "Reciprocal Damper" by blending the liquidity of Fiat with the hardness of Real Assets. If Fiat loses value, Commodities typically rise, neutralizing the loss.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <span class="w-2 h-2 mt-2 rounded-full bg-blue-500 mr-3"></span>
+                            <div>
+                                <strong class="text-white">Fiat Anchors (40%)</strong>
+                                <p class="text-sm text-slate-500">Provides liquidity and unit-of-account utility. Includes USD, EUR, and Asian currencies.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="w-2 h-2 mt-2 rounded-full bg-amber-500 mr-3"></span>
+                            <div>
+                                <strong class="text-white">Real Asset Anchors (40%)</strong>
+                                <p class="text-sm text-slate-500">Provides inflation hedging and sovereignty. Includes Gold, Energy, and Tech Metals.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="w-2 h-2 mt-2 rounded-full bg-emerald-500 mr-3"></span>
+                            <div>
+                                <strong class="text-white">Algorithmic Buffer (20%)</strong>
+                                <p class="text-sm text-slate-500">Short-term T-Bills and stablecoin liquidity for rapid peg defense.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Chart Container -->
+                <div class="bg-swarn-card p-6 rounded-2xl border border-slate-700 shadow-2xl relative">
+                    <h3 class="text-center text-white font-bold mb-4">Basket Composition</h3>
+                    <div class="chart-container">
+                        <canvas id="gsiChart"></canvas>
+                    </div>
+                    <!-- Center Overlay -->
+                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none mt-8">
+                        <div class="text-center">
+                            <span class="block text-2xl font-bold text-white">SWR</span>
+                            <span class="text-xs text-slate-400">1 Unit</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Swarn Sentinel Architecture -->
+    <section id="sentinel" class="py-20 bg-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-12">
+                <h2 class="font-display text-3xl font-bold text-white mb-4">Swarn Sentinel: The Iron Dome</h2>
+                <p class="text-slate-400 max-w-3xl">
+                    A standalone, zero-latency AI system running alongside every validator. It ignores user identity (Exchange responsibility) and focuses purely on <strong>Economic Defense</strong> and <strong>Network Immunity</strong>.
+                </p>
+            </div>
+
+            <!-- Visualization of the Sentinel Pipeline using CSS Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 relative">
+                
+                <!-- Step 1 -->
+                <div class="relative z-10 step-connector md:last:after:hidden">
+                    <div class="bg-slate-800 p-6 rounded-lg border border-slate-600 h-full flex flex-col items-center text-center hover:border-swarn-accent transition-all">
+                        <div class="bg-slate-700 p-3 rounded-full mb-4">
+                            <span class="text-2xl">👁️</span>
+                        </div>
+                        <h4 class="font-bold text-white mb-2">1. Watcher</h4>
+                        <p class="text-xs text-slate-400">Telemetry Ingestion. Monitors Mempool velocity, Gas variance, and External Market Prices (CEX/DEX).</p>
+                        <div class="mt-auto pt-4 text-xs font-mono text-swarn-accent">Input: Market Data</div>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="relative z-10 step-connector md:last:after:hidden">
+                    <div class="bg-slate-800 p-6 rounded-lg border border-slate-600 h-full flex flex-col items-center text-center hover:border-swarn-ai transition-all">
+                        <div class="bg-slate-700 p-3 rounded-full mb-4">
+                            <span class="text-2xl">🧠</span>
+                        </div>
+                        <h4 class="font-bold text-white mb-2">2. Brain</h4>
+                        <p class="text-xs text-slate-400">Inference Engine. Uses LSTM to predict de-pegging events and Isolation Forests for spam detection.</p>
+                        <div class="mt-auto pt-4 text-xs font-mono text-swarn-accent">Action: Anomaly Detect</div>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="relative z-10 last-step">
+                    <div class="bg-slate-800 p-6 rounded-lg border border-slate-600 h-full flex flex-col items-center text-center hover:border-swarn-success transition-all">
+                        <div class="bg-slate-700 p-3 rounded-full mb-4">
+                            <span class="text-2xl">⚖️</span>
+                        </div>
+                        <h4 class="font-bold text-white mb-2">3. Judge</h4>
+                        <p class="text-xs text-slate-400">Circuit Breaker. Triggers defensive actions (e.g., Dynamic Fees) signed with a Dilithium PQC Key.</p>
+                        <div class="mt-auto pt-4 text-xs font-mono text-swarn-success">Output: Defense Order</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Tokenomics & Governance -->
+    <section id="tokenomics" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                
+                <!-- Profitability Chart -->
+                <div class="bg-swarn-card p-6 rounded-2xl border border-slate-700 shadow-xl">
+                    <div class="flex justify-between items-end mb-6">
+                        <div>
+                            <h2 class="font-display text-2xl font-bold text-white">Cognitive Proof-of-Stake</h2>
+                            <p class="text-sm text-slate-400 mt-1">Validator Node Economics (Monthly)</p>
+                        </div>
+                        <div class="text-right">
+                            <span class="block text-3xl font-bold text-swarn-success">+$866</span>
+                            <span class="text-xs text-slate-500">Est. Net Profit</span>
+                        </div>
+                    </div>
+                    <div class="chart-container" style="height: 300px;">
+                        <canvas id="profitChart"></canvas>
+                    </div>
+                    <div class="mt-4 grid grid-cols-2 gap-4 text-center">
+                        <div class="bg-slate-800 p-3 rounded">
+                            <span class="block text-xs text-slate-400">Sentinel Toll</span>
+                            <span class="font-bold text-white">70% to Node</span>
+                        </div>
+                        <div class="bg-slate-800 p-3 rounded">
+                            <span class="block text-xs text-slate-400">Minting Fees</span>
+                            <span class="font-bold text-white">0.05% Volume</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Governance Model -->
+                <div class="flex flex-col justify-center">
+                    <h2 class="font-display text-3xl font-bold text-white mb-4">Damped Governance</h2>
+                    <p class="text-slate-400 mb-6">
+                        To prevent mob rule or "governance attacks" from destabilizing the currency peg, Swarn implements strictly enforced hysteresis delays.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="bg-slate-800/50 p-4 rounded-lg border-l-4 border-swarn-gold">
+                            <h4 class="font-bold text-white">⏳ Time-Locked Rebalancing</h4>
+                            <p class="text-sm text-slate-400 mt-1">
+                                Changes to basket weights have a <strong>Maximum Change Velocity (MCV)</strong> of 1% per day. Drastic shifts (e.g., 20% to 30% Gold) take 10 days to execute.
+                            </p>
+                        </div>
+                        
+                        <div class="bg-slate-800/50 p-4 rounded-lg border-l-4 border-swarn-ai">
+                            <h4 class="font-bold text-white">🤖 Sentinel Veto</h4>
+                            <p class="text-sm text-slate-400 mt-1">
+                                The AI runs continuous simulations. If a proposal is predicted to cause a "Death Spiral" (>95% prob), the Sentinel issues a <strong>Technical Veto</strong> requiring a supermajority override.
+                            </p>
+                        </div>
+
+                        <div class="bg-slate-800/50 p-4 rounded-lg border-l-4 border-swarn-accent">
+                            <h4 class="font-bold text-white">🗳️ Quadratic Voting</h4>
+                            <p class="text-sm text-slate-400 mt-1">
+                                Voting power is calculated as <code>Votes = √Tokens</code> to protect against whale dominance and encourage broad consensus.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Glossary -->
+    <section id="glossary" class="py-20 bg-slate-900 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="font-display text-3xl font-bold text-white mb-10 text-center">Glossary of Terms & Abbreviations</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                <!-- Concept: SWR -->
+                <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:border-swarn-accent transition-colors glossary-card">
+                    <h4 class="text-swarn-accent font-bold text-xl mb-2">SWR</h4>
+                    <p class="text-sm text-slate-300"><strong>Swarn GSI Token.</strong> The stable unit of account pegged to the hybrid commodity basket.</p>
+                </div>
+                <!-- Concept: AGS -->
+                <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:border-swarn-success transition-colors glossary-card">
+                    <h4 class="text-swarn-success font-bold text-xl mb-2">AGS</h4>
+                    <p class="text-sm text-slate-300"><strong>Aegis Token.</strong> The governance and security token staked by validators.</p>
+                </div>
+                <!-- Concept: Sentinel -->
+                <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:border-swarn-ai transition-colors glossary-card">
+                    <h4 class="text-swarn-ai font-bold text-xl mb-2">Swarn Sentinel</h4>
+                    <p class="text-sm text-slate-300">The independent AI sidecar application that acts as an "Iron Dome" for economic defense.</p>
+                </div>
+                <!-- Concept: Iron Dome -->
+                <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:border-swarn-danger transition-colors glossary-card">
+                    <h4 class="text-swarn-danger font-bold text-xl mb-2">Iron Dome</h4>
+                    <p class="text-sm text-slate-300">The economic defense subsystem (Circuit Breakers) detecting market manipulation.</p>
+                </div>
+                <!-- Concept: PQC -->
+                <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:border-white transition-colors glossary-card">
+                    <h4 class="text-white font-bold text-xl mb-2">PQC</h4>
+                    <p class="text-sm text-slate-300"><strong>Post-Quantum Cryptography.</strong> Algorithms (Dilithium, Kyber) resistant to quantum attacks.</p>
+                </div>
+                <!-- Concept: GSI -->
+                <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:border-swarn-gold transition-colors glossary-card">
+                    <h4 class="text-swarn-gold font-bold text-xl mb-2">GSI</h4>
+                    <p class="text-sm text-slate-300"><strong>Global Stability Index.</strong> The synthetic commodity basket backing the SWR token.</p>
+                </div>
+            </div>
+
+            <!-- Acronyms Table -->
+            <div class="overflow-x-auto">
+                <table class="min-w-full text-left text-sm whitespace-nowrap">
+                    <thead>
+                        <tr class="border-b border-slate-700">
+                            <th class="px-4 py-3 font-bold text-white">Acronym</th>
+                            <th class="px-4 py-3 font-bold text-white">Definition</th>
+                            <th class="px-4 py-3 font-bold text-white">Context</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-slate-400 divide-y divide-slate-800">
+                        <tr>
+                            <td class="px-4 py-3 font-mono text-swarn-accent">AP</td>
+                            <td class="px-4 py-3">Authorized Participant</td>
+                            <td class="px-4 py-3">Banks permitted to mint/redeem SWR.</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3 font-mono text-swarn-accent">DAO</td>
+                            <td class="px-4 py-3">Decentralized Autonomous Org</td>
+                            <td class="px-4 py-3">The governance structure.</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3 font-mono text-swarn-accent">NPoS</td>
+                            <td class="px-4 py-3">Nominated Proof-of-Stake</td>
+                            <td class="px-4 py-3">The consensus mechanism.</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3 font-mono text-swarn-accent">VASP</td>
+                            <td class="px-4 py-3">Virtual Asset Service Provider</td>
+                            <td class="px-4 py-3">Exchanges (responsible for KYC/AML).</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3 font-mono text-swarn-accent">MCV</td>
+                            <td class="px-4 py-3">Maximum Change Velocity</td>
+                            <td class="px-4 py-3">Limit on basket rebalancing speed (1%/day).</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-slate-800 bg-slate-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-slate-500 text-sm">
+                Project Swarn • Sovereign-Hybrid Post-Quantum Financial Protocol<br>
+                <span class="opacity-50">Exchange-Agnostic Protocol Layer. NIST PQC Standards.</span>
+            </p>
+            <p class="text-slate-600 text-xs mt-4 font-mono">Created by Babu Priyavrat</p>
+        </div>
+    </footer>
+
+    <!-- Chart Scripts -->
+    <script>
+        // --- 1. GSI Basket Chart (Doughnut) ---
+        const ctxGSI = document.getElementById('gsiChart').getContext('2d');
+        
+        // Colors
+        const colorFiat = '#3b82f6'; // Blue
+        const colorReal = '#f59e0b'; // Amber
+        const colorBuffer = '#10b981'; // Emerald
+        
+        const gsiChart = new Chart(ctxGSI, {
+            type: 'doughnut',
+            data: {
+                labels: [
+                    'USD (Fiat)', 'EUR (Fiat)', 'Asian Mix (Fiat)', 
+                    'Gold (Real)', 'Energy Mix (Real)', 'Tech Metals (Real)', 
+                    'T-Bills/Stable (Buffer)'
+                ],
+                datasets: [
+                    // Outer Ring: Specific Assets
+                    {
+                        data: [20, 10, 10, 20, 10, 10, 20],
+                        backgroundColor: [
+                            '#60a5fa', '#3b82f6', '#2563eb', // Fiat Shades
+                            '#fbbf24', '#f59e0b', '#d97706', // Real Shades
+                            '#34d399' // Buffer
+                        ],
+                        borderWidth: 0,
+                        label: 'Asset Allocation (%)'
+                    },
+                    // Inner Ring: Categories
+                    {
+                        data: [40, 40, 20],
+                        backgroundColor: [colorFiat, colorReal, colorBuffer],
+                        borderWidth: 2,
+                        borderColor: '#1e293b',
+                        label: 'Category Weight (%)'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '40%', // Inner cutout
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: { 
+                            color: '#94a3b8',
+                            font: { family: 'Inter', size: 12 },
+                            padding: 20
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                // Multi-line wrapping logic
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex] || '';
+                                if (label.length > 16) {
+                                    return label.match(/.{1,16}(\s|$)/g) || [label];
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // --- 2. Tokenomics Profitability Chart (Bar) ---
+        const ctxProfit = document.getElementById('profitChart').getContext('2d');
+        const profitChart = new Chart(ctxProfit, {
+            type: 'bar',
+            data: {
+                labels: ['Monthly Cost', 'Monthly Revenue', 'Net Profit'],
+                datasets: [{
+                    label: 'USD Value ($)',
+                    data: [800, 1666, 866],
+                    backgroundColor: [
+                        '#f43f5e', // Cost (Red)
+                        '#38bdf8', // Revenue (Blue)
+                        '#34d399'  // Profit (Green)
+                    ],
+                    borderRadius: 6,
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: { color: '#334155' },
+                        ticks: { color: '#94a3b8', callback: (val) => '$' + val }
+                    },
+                    x: {
+                        grid: { display: false },
+                        ticks: { color: '#cbd5e1', font: { weight: 'bold' } }
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                // Wrapping logic
+                                const item = tooltipItems[0];
+                                let label = item.label;
+                                if (label.length > 16) {
+                                    return label.match(/.{1,16}(\s|$)/g) || [label];
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
