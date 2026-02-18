@@ -1,8 +1,8 @@
-#Project Swarn 🪙
+# Project Swarn 🪙
 
 The Sovereign-Hybrid Financial Standard for the Post-Quantum Era.
 
-##📖 Executive Summary
+## 📖 Executive Summary
 
 Project Swarn (derived from the Sanskrit word for "Gold") represents a paradigm shift in global financial infrastructure. It is designed to establish a "Hardened Fiat" Standard—a monetary layer that bridges the gap between the programmable utility of digital currency and the tangible value of physical assets. While traditional stablecoins rely on the stability of a single fiat issuer, Swarn introduces the Global Stability Index (GSI). This sophisticated currency basket stabilizes volatile fiat currencies by anchoring them to a diversified portfolio of real-world commodities, including Gold, Energy futures, and Industrial Metals.
 
@@ -10,9 +10,9 @@ Secured by NIST-standard Post-Quantum Cryptography (PQC), Swarn operates as a ne
 
 Regulatory Stance & Philosophy: Project Swarn strictly provides the Protocol Layer. We function as the digital rail, not the station. We do not operate as an exchange, custodian, or counterparty. All compliance obligations, including KYC (Know Your Customer) and AML (Anti-Money Laundering), are the sole responsibility of the Virtual Asset Service Providers (VASPs) and Exchanges that list the token. This separation of concerns ensures the protocol remains decentralized and censorship-resistant while allowing compliant integration into the legacy financial system.
 
-##🧩 Key Features
+## 🧩 Key Features
 
-###1. 🛡️ Post-Quantum Security
+### 1. 🛡️ Post-Quantum Security
 
 The cryptographic landscape is on the brink of a "Q-Day" event. State-level adversaries are currently employing a "Harvest Now, Decrypt Later" strategy—intercepting and storing encrypted financial traffic today to decrypt it once quantum computers reach sufficient scale. Swarn is engineered as PQC-Native from the first block to immunize the ledger against this retrospective threat:
 
@@ -20,7 +20,7 @@ Signatures (ML-DSA / Dilithium-2): We replace the vulnerable ECDSA standard used
 
 Transport (ML-KEM / Kyber-768): All node-to-node communication and gossip protocols are secured using Module-Lattice-Based Key Encapsulation Mechanisms. This ensures that the private data moving across the network cannot be harvested today for future exploitation.
 
-###2. ⚖️ The GSI Basket (Hybrid Stability)
+### 2. ⚖️ The GSI Basket (Hybrid Stability)
 
 Project Swarn solves the "Mutual Stabilization" problem by acknowledging that neither fiat nor commodities are perfect monies on their own. We blend the high liquidity of fiat with the hardness of commodities to create a "Reciprocal Damper":
 
@@ -30,7 +30,7 @@ Project Swarn solves the "Mutual Stabilization" problem by acknowledging that ne
 
 20% Buffer (The Tactical Reserve): An algorithmic liquidity pool composed of short-term T-Bills and stablecoins. This allows the protocol to perform rapid, automated market operations to defend the peg during periods of extreme volatility without liquidating physical assets.
 
-###3. 🤖 Swarn Sentinel (The Iron Dome)
+### 3. 🤖 Swarn Sentinel (The Iron Dome)
 
 The Sentinel is a standalone AI sidecar process running alongside every Validator Node. Unlike traditional compliance tools that look at who is transacting, the Sentinel ignores user identity and focuses purely on Economic Defense and network health:
 
@@ -74,7 +74,7 @@ graph TD
     Judge -- "Circuit Breaker Signals" --> Basket
 
 
-##🪙 Tokenomics: Cognitive Proof-of-Stake
+## 🪙 Tokenomics: Cognitive Proof-of-Stake
 
 Swarn introduces a novel consensus model that evolves beyond simple uptime. In Cognitive Proof-of-Stake, validators are incentivized to provide high-performance GPU Compute to run the AI inference models required by the Sentinel.
 
@@ -82,7 +82,7 @@ rds + Sentinel Tolls (70 & Utility% of AI fees go to the node).
 
 Net Profit: Estimated ~$866/mo at scale.
 
-##🚀 Getting Started
+## 🚀 Getting Started
 
 Prerequisites
 
@@ -114,7 +114,7 @@ pip install -r requirements.txt
 python api/main.py
 
 
-##📚 Documentation
+## 📚 Documentation
 
 Whitepaper: The complete technical and economic thesis.
 
@@ -122,7 +122,7 @@ Pitch Deck: Investor overview and roadmap.
 
 Sentinel Architecture: Deep dive into the AI defense layer.
 
-##🤝 Governance
+## 🤝 Governance
 
 Swarn is governed by the Aegis DAO using a "Damped Governance" model:
 
@@ -132,7 +132,7 @@ Time-Locked Rebalancing: Basket weight changes are limited to 1% velocity per da
 
 Sentinel Veto: The AI can mathematically veto proposals predicted to cause a death spiral.
 
-##📜 License
+## 📜 License
 
 This project is licensed under the Apache License.
 
